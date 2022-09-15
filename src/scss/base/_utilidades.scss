@@ -30,3 +30,18 @@
     border: 2px solid $grisOscuro;
     border-radius: .5rem;
 }
+
+@mixin button {
+    color: lighten($negro, 20);
+    width: 15rem;
+    height: 2.5rem;
+    align-self: center;
+    margin: 3.5rem;
+    background-color: $blanco;
+    font-weight: $regular;
+    transition: .1s ease;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

@@ -37,10 +37,12 @@ searchInput.addEventListener('blur', () => {
 function startApp() {
     // chargeData is empty
     if (!chargeData()) {
+        // Message Any task
+        hideMessage('.any-task', taskContain)
+        hideMessage('.any-completed', completedContain)
         return
     }
 
-    console.table(chargeData())
     // Print HTML
     chargeData().forEach((element) => {
         let {
@@ -160,6 +162,9 @@ function deleteTask(id) {
     const newTaskContent = taskContent.filter(element => element.id != id)
     taskContent = [...newTaskContent]
 
+    // Update Iterator
+    iteradorTaskContent--
+
     // Update localStorage
     saveData()
 
@@ -190,8 +195,28 @@ function updateTextarea(element, id) {
     element.addEventListener('input', e => {
         // Obtain the taskContent's index and modify its text
         taskContent.forEach((element, idArray) => {
+            
             if (element.id == id) {
-                taskContent[idArray].modifyText = e.target.value
+                // If task is emptydelete it
+                if (e.target.value.trim().length) {
+                    // Update text in array
+                    taskContent[idArray].modifyText = e.target.value
+                } else {
+                    deleteTask(id)
+                }
+            }
+        })
+    })
+
+    element.addEventListener('blur', e => {
+        // Obtain the taskContent's index and modify its text
+        taskContent.forEach((element, idArray) => {
+            if (element.id == id) {
+                if (e.target.value.trim().length) {
+                    taskContent[idArray].modifyText = e.target.value
+                } else {
+                    deleteTask(id)
+                }
             }
         })
     })
@@ -244,13 +269,14 @@ function modifyTag(id) {
 function taskCompleted(idTask) {
     // Task unchecked
     if (!document.getElementById(idTask).lastElementChild.classList.contains('checked')) {
-
         // Update in the HTML
         document.getElementById(idTask).remove()
         // Delete all its childs in HTML
         while (document.querySelector('.contenedor-completadas').firstElementChild) {
             document.querySelector('.contenedor-completadas').removeChild(document.querySelector('.contenedor-completadas').firstElementChild)
         }
+
+        resetTaskBox()
 
         // Modify element in array
         taskContent.forEach((element, idArray) => {
@@ -260,15 +286,18 @@ function taskCompleted(idTask) {
                 // taskContent[idArray].createHTML()
             }
 
-            taskContent[idArray].createHTML()
+            // Create only checked
+            if (element.check == 'checked') {
+                taskContent[idArray].createHTML()
+            }
 
         })
-        // Message Any completed
+        // Message Any task
         hideMessage('.any-task', taskContain)
+        hideMessage('.any-completed', completedContain)
 
         // Task Checked
     } else {
-
         // Update in the HTML
         document.getElementById(idTask).remove()
 
@@ -277,6 +306,8 @@ function taskCompleted(idTask) {
             document.querySelector('.contenedor-tareas').removeChild(document.querySelector('.contenedor-tareas').firstElementChild)
         }
 
+        resetTaskBox()
+
         // Modify element in array
         taskContent.forEach((element, idArray) => {
             if (element.id == idTask) {
@@ -284,10 +315,14 @@ function taskCompleted(idTask) {
                 // taskContent[idArray].createHTML()
             }
 
-            taskContent[idArray].createHTML()
+            // Create only unchecked
+            if (element.check == '') {
+                taskContent[idArray].createHTML()
+            }
 
         })
         // Message Any task
+        hideMessage('.any-task', taskContain)
         hideMessage('.any-completed', completedContain)
     }
 
@@ -311,10 +346,35 @@ function deleteAllTask() {
         activeBox.removeChild(activeBox.firstElementChild)
     }
 
+    // Message Any task
+    hideMessage('.any-task', taskContain)
+    hideMessage('.any-completed', completedContain)
+
     // Delete in array
     taskContent = taskContent.filter(element => element.check != check)
 
+    // Update iterator
+    iteradorTaskContent = taskContent.length
 
+    // Save Data
+    saveData()
+
+}
+
+// Reset Box for print
+function resetTaskBox() {
+    // Select contain tasks active
+    let activeBox = ''
+    if (document.querySelector('.contenedor-tareas').classList.contains('hidde')) {
+        activeBox = document.querySelector('.contenedor-tareas')
+    } else {
+        activeBox = document.querySelector('.contenedor-completadas')
+    }
+
+    // Delete all its childs in HTML
+    while (activeBox.firstElementChild) {
+        activeBox.removeChild(activeBox.firstElementChild)
+    }
 }
 
 // Local Storage
@@ -336,22 +396,33 @@ function hideMessage(p, contain) {
     const paragraph = document.createElement('p')
     paragraph.classList.add(p)
 
-    // Asign text and class
-    if (p == '.any-task') {
-        paragraph.textContent = 'No existen tareas pendientes...'
-        paragraph.classList.add('any-task')
-
-    } else {
-        paragraph.textContent = 'No tienes tareas completadas...'
-        paragraph.classList.add('any-completed')
-    }
-
+    // console.log(paragraph)
     // Check if the content tasks is empty
-    if (contain.firstElementChild.classList.contains(p)) {
-        contain.removeChild(contain.firstElementChild)
-    } else {
+    if (contain.children.length == 0) {
+        // Asign text and class
+        if (p == '.any-task') {
+            paragraph.textContent = 'No existen tareas pendientes...'
+            paragraph.classList.add('any-task')
+
+        } else {
+            paragraph.textContent = 'No tienes tareas completadas...'
+            paragraph.classList.add('any-completed')
+        }
+
         contain.appendChild(paragraph)
+    } else if (contain.children.length > 1) {
+        if (contain.firstElementChild.classList.contains(p)) {
+            contain.removeChild(contain.firstElementChild)
+        }
     }
+
+    // if (contain.firstElementChild.classList.contains('message') && contain.children.length > 1) {
+    // console.log('chao')
+    //     contain.removeChild(contain.firstElementChild)
+    // } else {
+    // console.log('bienvenido')
+    //     contain.appendChild(paragraph)
+    // }
 
 }
 
