@@ -1,0 +1,240 @@
+.contenedor {
+    -webkit-box-shadow: 0px 5px 30px 5px rgba(189, 189, 189, 1);
+    -moz-box-shadow: 0px 5px 30px 5px rgba(189, 189, 189, 1);
+    box-shadow: 0px 5px 30px 5px rgba(189, 189, 189, 1);
+    border-radius: 1.5rem;
+    padding: 5rem 4rem 3rem 4rem;
+    display: grid;
+    @include grid(2, 2rem);
+    min-height: 40rem;
+}
+// Left Side
+.side1 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    // Caja agregar nueva tarea
+    .formulario {
+        display: flex;
+        flex-direction: column;
+    }
+    .caja-tarea {
+        width: 40rem;
+        height: 10rem;
+        @include border;
+        padding: 1rem;
+        word-wrap: break-word;
+        resize: none;
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+    // Texto presiona enter
+    .enter {
+        position: absolute;
+        top: -4rem;
+        right: 0;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-35%);
+        color: $grisOscuro;
+        z-index: -1;
+    }
+    .boton-agregar {
+        @include border;
+        color: lighten($negro, 20);
+        width: 15rem;
+        height: 2.5rem;
+        align-self: center;
+        margin: 3.5rem;
+        background-color: $blanco;
+        font-weight: $regular;
+        transition: .1s ease;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+// Right Side
+.side2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .buscador {
+        color: $grisOscuro;
+        height: 2.5rem;
+        margin: -3.5rem 0 1.5rem 0;
+        display: flex;
+        width: 60%;
+        
+        &.click {
+            outline: 2px solid $grisOscuro;
+            border-radius: .5rem;
+        }
+        .icon-share {
+            font-size: 2rem;
+            display: flex;
+            margin-top: .4rem;
+            align-items: center;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .texto-buscar {
+            border: none;
+            height: 100%;
+            width: 100%;
+            border-radius: .5rem;
+            
+            &:focus-visible {
+                outline: none;  
+            }
+        }
+    }
+    .toggle {
+        width: 80%;
+        height: 2.5rem;
+        @include grid(2,0);
+        margin-top: -.5rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        .tarea {
+            text-align: center;
+            background-color: $grisClaro;
+
+            &.toggle-active {
+                background-color: $gris;
+            }
+        }
+        .tareas {
+            border-radius: .5rem 0 0 .5rem;
+        }   
+        .completadas {
+            border-radius: 0 .5rem .5rem 0;
+        }
+
+
+    }
+    .contain {
+        display: block;
+        margin-top: 2rem;
+        height: 24rem;
+        overflow-y: scroll;
+        padding-right: .5rem;
+
+        .container-task {
+            width: 40rem;
+            height: 10rem;
+            flex-direction: column;
+            margin-bottom: 2rem;
+            position: relative;
+                        
+            .card-task {
+                width: 100%;
+                height: 100%;
+                @include border;
+                padding: 1rem 2.5rem 0 2.5rem;
+                word-wrap: break-word;
+                resize: none;
+                background-color: $blanco;
+
+                &:focus-visible {
+                    outline: none;
+                }
+                &:hover {
+                    cursor: text;
+                }
+                           }
+            .tag {
+                position: absolute;
+                bottom: .5rem;
+                left: .5rem;
+                cursor: pointer;
+                border: none;
+                width: 8rem;
+                height: 2rem;
+                border-radius: 1rem;
+                font-size: 1rem;
+                font-weight: $semiBold;
+
+                &.green {
+                    background-color: $verde;
+                }
+                &.oranje {
+                    background-color: $naranja;
+                }
+                &.red {
+                    background-color: $rojo;
+                }
+            }
+            .icon {
+                position: absolute;
+
+                &:hover {
+                    color: darken($gris,5);
+                    cursor: pointer;
+                }
+                }
+            .icon-close {
+                top: -5px;
+                right: 2px;
+                font-size: 2.5rem;
+                color: $gris;
+            }
+            .icon-edit {
+                bottom: -9px;
+                right: 3px;
+                font-size: 2rem;
+                color: $gris;
+            }
+            .boton-check {
+                @include boton;
+                top: .3rem;
+                left: .3rem;
+            }
+            .checked {
+                background-color: $verdeClaro;
+                border-color: darken($gris,5);
+                border: none;
+            }
+            .checked > .icon-check {
+                visibility: visible;
+                pointer-events:none;
+            }
+        }
+
+        .any-task {
+            font-size: 1.6rem;
+            color: $grisOscuro;
+            margin-top: 8rem;
+            display: block;
+
+            &.hide {
+                display: none;    
+            }
+        }
+
+        .any-completed {
+            font-size: 1.6rem;
+            color: $grisOscuro;
+            margin-top: 8rem;
+            display: block;
+
+            &.hide {
+                display: none;    
+            }
+        }
+
+        &.hidde {
+            display: none;
+        }
+
+    }
+}

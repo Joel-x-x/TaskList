@@ -1,0 +1,32 @@
+@mixin grid($columnas, $espaciado ) {
+    display: grid;
+    gap: $espaciado;
+    grid-template-columns: repeat($columnas, 1fr);
+}
+
+@mixin boton {
+    width: 2rem;
+    height: 2rem;
+    border: .32rem solid $gris;
+    background-color: $blanco;
+    border-radius: 50%;
+    // position: relative;
+    
+    &:hover {
+        cursor: pointer;
+    }
+
+    .icon-check {
+        position: absolute;
+        font-size: 2rem;
+        color: $blanco;
+        top: -6px;
+        right: 0;
+        visibility: hidden;
+    }
+} 
+
+@mixin border {
+    border: 2px solid $grisOscuro;
+    border-radius: .5rem;
+}

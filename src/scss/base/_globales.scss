@@ -1,0 +1,74 @@
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 5px;
+    background-color: $blanco;
+}
+::-webkit-scrollbar-button {
+    display: none;
+} 
+::-webkit-scrollbar-thumb {
+    background-color: $gris;
+    border-radius: .5rem;
+    // border: 2px solid darken($gris,23);
+}
+::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+::placeholder {
+    color: $grisOscuro;
+}
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    font-family: $fuente_principal;
+    font-size: 1.6rem;
+    line-height: 1.8;
+}
+p {
+    color: $negro;
+    font-size: 1.5rem;
+}
+.contenedor {
+    width: 95%;
+    max-width: 100rem;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+img,
+picture {
+    width: 100%;
+    display: block;
+}
+
+h1, h2, h3, h4 {
+    font-family: $fuente_principal;
+    margin: calc($separacion / 2) 0;
+    font-weight: $medium;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3.8rem;
+}
+h2 {
+    font-size: 3.4rem;
+}
+h3 {
+    font-size: 3rem;
+}
+h4 {
+    font-size: 2.5rem;
+}

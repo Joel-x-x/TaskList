@@ -1,0 +1,12 @@
+// Globales
+@import 'base/normalize';
+@import 'base/variables';
+@import 'base/globales';
+@import 'base/mixins';
+@import 'base/darkmode';
+@import 'base/utilidades.scss';
+
+
+// UI
+@import 'layout/header';
+@import 'layout/contenido';
