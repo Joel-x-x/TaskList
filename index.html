@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" href="build/css/app.css">
+    <link rel="stylesheet" href="build/css/styles.css">
+</head>
+
+<body>
+    <h1 class="h1">Task <span class="list">List</span></h1>
+    <main class="contenedor">
+        <div class="side1">
+            <form class="formulario">
+                <textarea class="caja-tarea" name="" id="caja-tarea" placeholder="Agregar una nueva tarea"
+                    maxlength="140"></textarea>
+                <span class="enter">Presiona [Enter]</span>
+                <input class="boton-agregar" type="button" value="Agregar">
+
+            </form>
+        </div>
+        <div class="side2">
+            <form class="buscador" id="buscador">
+                <label class="icon-share" for="search"></label>
+                <input id="search" class="texto-buscar" type="search" placeholder="Presiona [ / ] para buscar">
+            </form>
+            <div class="toggle" id="toggle">
+                <div class="tareas tarea toggle-active">Tareas</div>
+                <div class="completadas tarea">Completadas</div>
+            </div>
+            <div class="contenedor-tareas contain">
+            </div>
+            <div class="contenedor-completadas contain hidde">
+            </div>
+            <button class="delete-all" id="delete-all">
+                Borrar tareas
+            </button>
+        </div>
+    </main>
+    <script src="src/js/app.js"></script>
+</body>
+
+</html>

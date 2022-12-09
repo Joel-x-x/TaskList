@@ -1,7 +1,7 @@
 // ====== DOM Elements ======
 const taskBox = document.querySelector('#caja-tarea')
 const searchInput = document.querySelector('#search')
-const buscador = document.querySelector('#buscador')
+// const buscador = document.querySelector('#buscador')
 const taskContain = document.querySelector('.contenedor-tareas')
 const completedContain = document.querySelector('.contenedor-completadas')
 const btnAgregar = document.querySelector('.boton-agregar')
@@ -25,12 +25,12 @@ btnToggle.addEventListener('click', changeTask)
 deleteTasks.addEventListener('click', deleteAllTask)
 
 // Toggle to the slash search
-searchInput.addEventListener('focus', () => {
-    buscador.classList.add('click')
-})
-searchInput.addEventListener('blur', () => {
-    buscador.classList.remove('click')
-})
+// searchInput.addEventListener('focus', () => {
+//     buscador.classList.add('click')
+// })
+// searchInput.addEventListener('blur', () => {
+//     buscador.classList.remove('click')
+// })
 
 // ====== Functions ======
 // DOM Loaded, charge data from localStorage
