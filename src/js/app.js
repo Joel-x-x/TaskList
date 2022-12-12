@@ -99,15 +99,14 @@ function createTask() {
 // Focus and Blur in elemento this case Enter and Slash
 function focusEvent(e) {
     // Focus en slash
-    if (e.which === 47 || e.keyCode === 47 || e.key === "/") {
-        e.preventDefault()
-        if (buscador.classList.contains('click')) {
-            searchInput.blur()
-        } else {
-            searchInput.focus()
-        }
-
-    }
+    // if (e.which === 47 || e.keyCode === 47 || e.key === "/") {
+        // e.preventDefault()
+        // if (buscador.classList.contains('click')) {
+            // searchInput.blur()
+        // } else {
+            // searchInput.focus()
+        // }
+    // }
     // Focus en Enter
     if (e.which === 13 || e.keyCode === 13 || e.key === 'Enter') {
         e.preventDefault()
@@ -197,12 +196,16 @@ function updateTextarea(element, id) {
         taskContent.forEach((element, idArray) => {
             
             if (element.id == id) {
-                // If task is emptydelete it
+                // If task is empty delete it
                 if (e.target.value.trim().length) {
                     // Update text in array
                     taskContent[idArray].modifyText = e.target.value
                 } else {
-                    deleteTask(id)
+                    setTimeout(() => {
+                        if (!e.target.value.trim().length) {
+                            deleteTask(id)
+                        }
+                    }, 5000);
                 }
             }
         })
