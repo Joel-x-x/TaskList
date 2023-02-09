@@ -7,6 +7,14 @@
     display: grid;
     @include grid(2, 2rem);
     min-height: 40rem;
+    
+    @include desktop {
+        @include grid(1, 2rem);
+    }
+
+    @include telefono {
+        padding: 5rem 0 3rem 0;
+    }
 }
 // Left Side
 .side1 {
@@ -14,10 +22,17 @@
     display: flex;
     justify-content: center;
 
+    @include telefono {
+        width: 100%;
+    }
     // Caja agregar nueva tarea
     .formulario {
         display: flex;
         flex-direction: column;
+        @include telefono {
+            width: 100%;
+            align-items: center;
+        }
     }
     .caja-tarea {
         width: 40rem;
@@ -29,6 +44,9 @@
 
         &:focus-visible {
             outline: none;
+        }
+        @include telefono {
+            width: 90%;
         }
     }
     // Texto presiona enter
@@ -113,11 +131,18 @@
 
     }
     .contain {
-        display: block;
+        display: flex;
+        flex-direction: column;
         margin-top: 2rem;
         height: 24rem;
         overflow-y: scroll;
         padding-right: .5rem;
+
+        @include telefono {
+            width: 100%;
+            align-items: center;
+            padding-right: 0;
+        }
 
         .container-task {
             width: 40rem;
@@ -125,10 +150,14 @@
             flex-direction: column;
             margin-bottom: 2rem;
             position: relative;
+
+            @include telefono {
+                width: 90%;
+            }
                         
             .card-task {
                 width: 100%;
-                height: 100%;
+                height: 10rem;
                 @include border;
                 padding: 1rem 2.5rem 0 2.5rem;
                 word-wrap: break-word;
